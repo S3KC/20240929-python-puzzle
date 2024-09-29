@@ -7,7 +7,9 @@ def test_main_output():
     assert result == 1312850, "Did not get the expected result, check your work and try again."
 
 
-@pytest.mark.skipif(challenge.__code__.co_code == b'd\x00S\x00', reason="challenge function not implemented")
 def test_challenge():
-    result = challenge()
-    assert result == 36749103, "Did not get the expected result, check your work and try again."
+    try:
+        result = challenge()
+        assert result == 36749103, "Did not get the expected result, check your work and try again."
+    except NotImplementedError:
+        pytest.skip("challenge function not implemented")
